@@ -1,0 +1,44 @@
+.body {
+    width: calc(100% - 5rem);
+    background: #263238;
+    display: flex;
+    height:  4rem;
+    margin-left: 5rem;
+    z-index: 0;
+    position: relative;
+    top: 0;
+    transition: all .5s ease;
+    .logo-container {
+        display: flex;
+        align-items: center;
+        padding: 0rem 0.938rem 0 0.938rem;
+        width: 100%;
+        .btn-perfil {
+            margin-left: auto;
+            cursor: pointer;
+            width: 2rem;
+            height: 2rem;
+            border-radius: 50%;
+            background-color: transparent;
+            border: none;
+    
+            .fal {
+                color: #fff;
+                font-size: 24px;
+            }
+        }
+    }
+}
+h1{
+    margin: 0;
+    color: aliceblue;
+}
+.body-trimmed {
+    width: calc(100% - 16.5625rem);
+    margin-left: 16.5625rem;
+}
+
+.body-md-screen {
+    width: calc(100% - 5rem);
+    margin-left: 5rem;
+}

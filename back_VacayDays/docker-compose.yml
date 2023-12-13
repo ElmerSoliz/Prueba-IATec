@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:latest
+    container_name: vacaydays
+    environment:
+      MYSQL_ROOT_PASSWORD: vacaydays
+      MYSQL_ROOT_HOST: "127.0.0.1"
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./docker-scripts/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - mysql-data:/var/lib/mysql
+
+volumes:
+  mysql-data:
