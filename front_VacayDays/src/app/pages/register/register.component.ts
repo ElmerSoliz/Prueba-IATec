@@ -11,7 +11,7 @@ import { UserService } from 'src/app/services/user.service';
 export class RegisterComponent {
 
   users : User[] = []; 
-  userData: User = {id: 0,username: '', email: '', password: '', createdAt: new Date()};
+  userData: User = {id: 0,username: '', email: '', password: '', holidays: 0, createdAt: new Date()};
   registeruser = false;
   
   constructor(private userService : UserService) {
@@ -52,7 +52,6 @@ export class RegisterComponent {
   }
   
   deleteUser(id: number) {
-    console.log(id);
     
     this.userService.deleteUser(id).subscribe(
       () => {

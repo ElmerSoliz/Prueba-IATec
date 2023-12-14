@@ -12,6 +12,7 @@ import { BodyComponent } from './body/body.component';
 import { LayoutComponent } from './layout/layout.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ValidationRequestRegisterComponent } from './pages/validation-request-register/validation-request-register.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { HttpClientModule } from '@angular/common/http';
     BodyComponent,
     LayoutComponent,
     RegisterComponent,
+    ValidationRequestRegisterComponent,
   ],
   imports: [
     BrowserModule,

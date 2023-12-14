@@ -14,6 +14,7 @@ RouteAdmin.delete("/user:id", userController.Delete);
 RouteAdmin.get("/vacationRequest", vacationRequestController.GetAll);
 RouteAdmin.post("/vacationRequest", vacationRequestController.Create);
 RouteAdmin.get("/vacationRequest:id", vacationRequestController.GetById);
+RouteAdmin.get("/vacationUser:userId", vacationRequestController.GetByUserId);
 RouteAdmin.put("/vacationRequest:id", vacationRequestController.Update);
 RouteAdmin.delete("/vacationRequest:id", vacationRequestController.Delete);
 

@@ -5,7 +5,7 @@ export default {
     async GetAll(req, res){
         try {
             const users = await models.User.findAll({
-                attributes: ['id','username', 'email', 'createdAt']
+                attributes: ['id','username', 'email', 'holidays', 'createdAt']
             });
             return res.status(200).json(users);
         } catch (error) {
@@ -17,6 +17,22 @@ export default {
         try {
             let data = req.body;
             data.password = await bcrypt.hash(data.password, 12);
+
+            const dateStartWork = new Date(data.createdAt); // Suponiendo que tienes esta propiedad en tu objeto 'data'
+            const today = new Date();
+            const yearsWorked = today.getFullYear() - dateStartWork.getFullYear();
+
+            let Holidays;
+
+            if (yearsWorked >= 1 && yearsWorked <= 5) {
+                Holidays = 15;
+            } else if (yearsWorked >= 6 && yearsWorked <= 10) {
+                Holidays = 20;
+            } else {
+                Holidays = 30;
+            }
+
+            data.holidays = Holidays;
 
             const user = await models.User.create(data);
 

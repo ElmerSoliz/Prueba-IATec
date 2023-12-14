@@ -1,0 +1,61 @@
+<div class="card" *ngIf="!vacationRegister">
+  <h5 class="card-header">Lista de Usuarios</h5>
+  <div class="card-body">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Nombre Usuario</th>
+          <th scope="col">Fecha de Inicio</th>
+          <th scope="col">Fecha de Culminacion</th>
+          <th scope="col">Estado</th>
+          <th scope="col">Total de dias</th>
+          <th scope="col">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let vacationRequest of vacationRequests">
+          <td>{{ vacationRequest.user?.username }}</td>
+          <td>{{ vacationRequest.startDate | date:'yyyy-MM-dd' }}</td>
+          <td>{{ vacationRequest.endDate | date:'yyyy-MM-dd' }}</td>
+          <td>{{ vacationRequest.status }}</td>
+          <td>{{ vacationRequest.totalDays }}</td>
+          <td>
+            <i class="icon far fa-file-download" (click)="generatePDF(vacationRequest)"></i>
+            <i class="icon far fa-trash-alt" (click)="deleteVacationRequest(vacationRequest.id)"></i>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <button type="button" class="btn btn-success" (click)="vacationRegister = true">Crear Solicitud</button>
+  </div>
+</div>
+
+<div class="register-container" *ngIf="vacationRegister">
+  <div class="card register-user-container">
+    <h5 class="card-header">Registrar Solicitud</h5>
+    <div class="card-body">
+      <form (ngSubmit)="registerVacation()">
+        <fieldset>
+          <label for="startDate">Fecha de Inicio</label>
+          <input type="date" id="startDate" name="startDate" [(ngModel)]="vacationRequestData.startDate" (ngModelChange)="calculateTotalDays()" required>
+
+          <label for="endDate">Fecha de Culminacion</label>
+          <input type="date" id="endDate" name="endDate" [(ngModel)]="vacationRequestData.endDate" (ngModelChange)="calculateTotalDays()" required>
+        </fieldset>
+
+        <label for="totalDays">Días totales:</label>
+        <input type="number" id="totalDays" name="totalDays" [(ngModel)]="vacationRequestData.totalDays" required>
+
+        <label for="userSelect">Selecciona un usuario:</label>
+        <select id="userSelect" name="userSelect" [(ngModel)]="selectedUserId">
+          <option *ngFor="let user of users" [value]="user.id">{{ user.username }}</option>
+        </select>
+
+        <div class="button-container">
+          <button type="submit" class="action-button btn btn-success">Registrar</button>
+          <button type="reset" class="action-button btn btn-secondary">Limpiar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

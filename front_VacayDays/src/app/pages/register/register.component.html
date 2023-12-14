@@ -17,8 +17,6 @@
           <td>{{ user.createdAt | date:'yyyy-MM-dd' }}</td>
           <td>
             <i class="icon far fa-edit" (click)="editUser()"></i>
-          </td>
-          <td>
             <i class="icon far fa-trash-alt" (click)="deleteUser(user.id)"></i>
           </td>
         </tr>
@@ -45,11 +43,9 @@
         <label for="createdAt">Fechas de Inicio</label>
         <input type="date" id="createdAt" name="createdAt" [(ngModel)]="userData.createdAt" required>
 
-        <button type="submit" class=" btn btn-success">Registrar</button>
-        <div class="action-button">
+        <button type="submit" class="action-button btn btn-success">Registrar</button>
           
-          <button type="button" class=" btn btn-secondary" data-bs-dismiss="modal" (click)="registeruser = false">Cancelar</button>
-        </div>
+        <button type="button" class="action-button btn btn-secondary" (click)="registeruser = false">Cancelar</button>
       </form>
     </div>
   </div>
