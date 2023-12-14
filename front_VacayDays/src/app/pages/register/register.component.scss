@@ -1,0 +1,23 @@
+.icon {
+    cursor: pointer; 
+}
+.register-container {
+    width: 100%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+.register-user-container {
+    width: 250px;
+    height: 350px;
+    .card-body {
+        height: 250px;
+        padding: 10px;
+    }
+    .button-container{
+        padding: 20px;
+    }
+}
+.action-button{
+    padding: 10px
+}
