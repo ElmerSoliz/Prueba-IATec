@@ -1,0 +1,33 @@
+.content {
+    background-image: url('./../../../assets/fondo'); 
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .container {
+    display: flex;
+  }
+  
+  .card {
+    background-color: rgba(255, 255, 255, 0.7);
+    width: 20rem; 
+    height: 18rem;
+    text-align: center;
+  }
+  
+  .content-value {
+    padding: 15px;
+  }
+  
+  h1 {
+    padding-top: 15px;
+  }
+  
+  .error {
+    border-color: red;
+  }
+  

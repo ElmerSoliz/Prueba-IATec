@@ -7,7 +7,7 @@ export const navbarData = [
     },
     {
         routeLink: 'vacationRequest',
-        icon: 'fal fa-box-open',
+        icon: 'far fa-folder-plus',
         label: 'Solicitud de Vacaciones'
     },
     // {

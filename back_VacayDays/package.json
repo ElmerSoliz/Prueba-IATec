@@ -4,7 +4,7 @@
   "description": "backend vacation manager",
   "main": "index.js",
   "scripts": {
-    "test": "test",
+    "test": "jest",
     "dev": "nodemon --exec babel-node src/index.js",
     "build": "babel src/ --out-dir dist",
     "start": "node dist/index.js"
@@ -21,17 +21,25 @@
   "homepage": "https://github.com/ElmerSoliz/VACAYDAYS#readme",
   "dependencies": {
     "bcrypt": "^5.1.1",
+    "chai": "^4.3.10",
     "cors": "^2.8.5",
     "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.2",
     "mysql2": "^3.6.5",
-    "sequelize": "^6.35.1"
+    "sequelize": "^6.35.1",
+    "sinon": "^17.0.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.23.4",
     "@babel/core": "^7.23.6",
     "@babel/node": "^7.22.19",
     "@babel/preset-env": "^7.23.6",
+    "@types/jest": "^29.5.11",
     "dotenv": "^16.3.1",
-    "sequelize-cli": "^6.6.2"
+    "jest": "^29.7.0",
+    "sequelize-cli": "^6.6.2",
+    "supertest": "^6.3.3",
+    "ts-jest": "^29.1.1",
+    "ts-node": "^10.9.2"
   }
 }

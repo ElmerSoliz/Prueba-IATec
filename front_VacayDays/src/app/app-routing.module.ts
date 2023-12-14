@@ -3,8 +3,12 @@ import { RouterModule, Routes } from '@angular/router';
 import { LayoutComponent } from './layout/layout.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { ValidationRequestRegisterComponent } from './pages/validation-request-register/validation-request-register.component';
+import { LoginComponent } from './auth/login/login.component';
 
 const routes: Routes = [
+  {
+    path:"", component:LoginComponent
+  },
   {
     path: "layout", 
     component: LayoutComponent,

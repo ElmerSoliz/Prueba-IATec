@@ -1,0 +1,32 @@
+<form [formGroup]="loginForm" (ngSubmit)="login()">
+    <div class="content">
+      <div class="card">
+        <h1>Bienvenido</h1>
+  
+        <div class="mb-2 d-flex" style="display: flex;">
+          <div class="content-value col-sm-2" style="width: 2rem; height: 2rem;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-envelope-at" viewBox="0 0 16 16">
+            </svg>
+          </div>
+          <div class="content-value col-sm-10">
+            <input type="email" formControlName="email" class="form-control" placeholder="Correo Electrónico" />
+          </div>
+        </div>
+  
+        <div class="mb-2 d-flex" style="display: flex;">
+          <div class="content-value col-sm-2" style="width: 2rem; height: 2rem;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-lock" viewBox="0 0 16 16">
+            </svg>
+          </div>
+          <div class="content-value col-sm-10">
+            <input type="password" formControlName="password" class="form-control" placeholder="Contraseña" />
+          </div>
+        </div>
+  
+        <div class="button">
+          <button type="submit" class="btn btn-outline-success" [disabled]="loginForm.invalid">Iniciar Sesión</button>
+        </div>
+      </div>
+    </div>
+  </form>
+  
