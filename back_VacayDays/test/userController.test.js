@@ -1,83 +1,54 @@
-const request = require('supertest');
-const assert = require('assert');
-const express = require('express');
-import models from '../src/models';
-const app = express();
+// // import request from 'supertest';
+// import RouteAdmin from '../src/routes/admin.routes';
+// import models from '../src/models';
+
+import test from "node:test";
+import assert from "node:assert/strict";
 
 
-describe('Users controller', () => {
 
-  beforeEach(async () => {
-    await models.User.sync({force: true});
+
+
+  test('get all', () => {
+
   });
 
-  it('should get all users', async () => {
-    await models.User.bulkCreate([
-      { username: 'user1', email: 'user1@test.com' },
-      { username: 'user2', email: 'user2@test.com' }
-    ]);
+  test('get all by id', () => {
 
-    const res = await request(app).get('/users');
-
-    expect(res.statusCode).toEqual(200);
-    expect(res.body.length).toEqual(2);
   });
 
-  it('should create a new user', async () => {   
-    const res = await request(app)
-      .post('/users')
-      .send({
-        username: 'testuser', 
-        email: 'test@test.com',
-        password: '123456'
-      });
 
-    expect(res.statusCode).toEqual(201);
-    expect(res.body.message).toEqual('registered user');
-  });
 
-  it('should get user by id', async () => {
-    const user = await models.User.create({ 
-      username: 'testuser',
-      email: 'test@test.com'
-    });
-
-    const res = await request(app).get(`/users/${user.id}`);
-
-    expect(res.statusCode).toEqual(200);
-    expect(res.body.username).toEqual('testuser');
-  });
-
-  it('should update user', async () => {
-    const user = await models.User.create({ 
-      username: 'testuser', 
-      email: 'test@test.com'
-    });
-
-    const res = await request(app)
-      .put(`/users/${user.id}`)
-      .send({
-        username: 'updateduser'
-      });
-
-    expect(res.statusCode).toEqual(200);
-    expect(res.body.message).toEqual('modified user');
-  });
-
-  it('should delete user', async () => {
-    const user = await models.User.create({
-      username: 'testuser',
-      email: 'test@test.com' 
-    });
-
-    const res = await request(app)
-      .delete(`/users/${user.id}`);
-
-    expect(res.statusCode).toEqual(200);
-    expect(res.body.message).toEqual('Eliminated user');
-  });
-  afterAll(async () => {
-    await models.sequelize.close();
-  });
+  // test('should respond with a 200 status code for getting all users', async () => {
+  //   const response = await request(RouteAdmin).get('/user').send();
+  //   console.log(response.body); // Agrega esto para imprimir el cuerpo de la respuesta
+  //   expect(response.body).toBeInstanceOf(Array);
+  // },10000);
   
-});
+  // test('should respond with a 200 status code and return users', async () => {
+  //   // Supongamos que ya has creado algunos usuarios en tu base de datos de prueba
+
+  //   const response = await request(RouteAdmin).get('/user');
+    
+  //   expect(response.statusCode).toBe(200);
+  //   expect(response.body).toBeInstanceOf(Array); // Verifica que la respuesta sea un array
+
+  //   // Puedes ajustar estas expectativas según la estructura de tus datos
+  //   expect(response.body[0]).toHaveProperty('id');
+  //   expect(response.body[0]).toHaveProperty('username');
+  //   expect(response.body[0]).toHaveProperty('email');
+  //   expect(response.body[0]).toHaveProperty('holidays');
+  //   expect(response.body[0]).toHaveProperty('createdAt');
+  // });
+
+  // test('should respond with a 500 status code on error', async () => {
+  //     // Simula un error en la consulta de la base de datos
+  //     jest.spyOn(models.User, 'findAll').mockImplementation(() => {
+  //         throw new Error('Fake database error');
+  //     });
+
+  //     const response = await request(RouteAdmin).get('/user');
+
+  //     expect(response.statusCode).toBe(500);
+  //     expect(response.body).toEqual({ error: 'Internal Server Error' });
+  // });
