@@ -1,3 +1,10 @@
+# Credenciales de prueba
+
+´´´
+email: prueba@gmail.com
+password: prueba123
+´´´
+
 # Ejecutar en desarrollo
 
 1. Clonar el repositorio
