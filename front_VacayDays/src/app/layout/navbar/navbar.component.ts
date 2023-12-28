@@ -30,8 +30,6 @@ export class NavbarComponent {
 
   ngOnInit(): void {
     this.screenWidth = window.innerWidth;
-    console.log(this.screenWidth);
-    
   }
 
   toggleCollapsed():void {
@@ -44,4 +42,8 @@ export class NavbarComponent {
     this.onToggleSideNav.emit({ collapsed: this.collapsed, screenWidth: this.screenWidth });
   }
 
+  handleLogout(action: () => void): void {
+    action();
+  }
+  
 }

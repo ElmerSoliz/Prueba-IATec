@@ -1,54 +1,63 @@
-// // import request from 'supertest';
-// import RouteAdmin from '../src/routes/admin.routes';
-// import models from '../src/models';
+import UsersController from '../src/controllers/user.controller';
+import { findAll } from '../src/models/user';
 
-import test from "node:test";
-import assert from "node:assert/strict";
+jest.mock('../src/models/user');
 
+describe('UsersController', () => {
+  let controller;
 
-
-
-
-  test('get all', () => {
-
+  beforeEach(() => {
+    controller = new UsersController();
   });
 
-  test('get all by id', () => {
-
+  afterEach(() => {
+    jest.clearAllMocks(); 
   });
 
+  describe('GetAll', () => {
+    test('should return all users', async () => {
+      // Arrange
+      findAll.mockResolvedValue([
+        { id: 1, username: 'john' }, 
+        { id: 2, username: 'jane' }
+      ]);
 
+      const req = {};
+      const res = {
+        status: jest.fn().mockReturnThis(),
+        json: jest.fn()
+      };
 
-  // test('should respond with a 200 status code for getting all users', async () => {
-  //   const response = await request(RouteAdmin).get('/user').send();
-  //   console.log(response.body); // Agrega esto para imprimir el cuerpo de la respuesta
-  //   expect(response.body).toBeInstanceOf(Array);
-  // },10000);
-  
-  // test('should respond with a 200 status code and return users', async () => {
-  //   // Supongamos que ya has creado algunos usuarios en tu base de datos de prueba
+      // Act
+      await controller.GetAll(req, res);
 
-  //   const response = await request(RouteAdmin).get('/user');
-    
-  //   expect(response.statusCode).toBe(200);
-  //   expect(response.body).toBeInstanceOf(Array); // Verifica que la respuesta sea un array
+      // Assert
+      expect(res.status).toHaveBeenCalledWith(200);
+      expect(res.json).toHaveBeenCalledWith([
+        { id: 1, username: 'john' },
+        { id: 2, username: 'jane' }  
+      ]);
+    });
 
-  //   // Puedes ajustar estas expectativas según la estructura de tus datos
-  //   expect(response.body[0]).toHaveProperty('id');
-  //   expect(response.body[0]).toHaveProperty('username');
-  //   expect(response.body[0]).toHaveProperty('email');
-  //   expect(response.body[0]).toHaveProperty('holidays');
-  //   expect(response.body[0]).toHaveProperty('createdAt');
-  // });
+    test('should handle error from findAll', async () => {
+      // Arrange
+      const errorMessage = 'Error fetching users';
+      findAll.mockRejectedValue(new Error(errorMessage));
 
-  // test('should respond with a 500 status code on error', async () => {
-  //     // Simula un error en la consulta de la base de datos
-  //     jest.spyOn(models.User, 'findAll').mockImplementation(() => {
-  //         throw new Error('Fake database error');
-  //     });
+      const req = {};
+      const res = {
+        status: jest.fn().mockReturnThis(),
+        json: jest.fn(),
+      };
 
-  //     const response = await request(RouteAdmin).get('/user');
+      // Act
+      await controller.GetAll(req, res);
 
-  //     expect(response.statusCode).toBe(500);
-  //     expect(response.body).toEqual({ error: 'Internal Server Error' });
-  // });
+      // Assert
+      expect(res.status).toHaveBeenCalledWith(500);
+      expect(res.json).toHaveBeenCalledWith({ error: 'Internal Server Error' });
+    });
+
+    // Add more tests for edge cases, empty array, etc.
+  });
+});

@@ -17,7 +17,7 @@ export class ValidationRequestRegisterComponent {
 
   // userVacationRequests: any | VacationRequest[];
   users : User[] = [];
-  user : any;
+  user : User | any;
   selectedUserId: number = 0;
   vacationRequestData: VacationRequest = {
     id: 0, 
@@ -52,7 +52,6 @@ export class ValidationRequestRegisterComponent {
     this.userService.getAllUsers().subscribe(
       (data:User[]) => {
         this.users = data;
-        console.log(data);
         
       },
       (error) => {
@@ -86,8 +85,6 @@ export class ValidationRequestRegisterComponent {
   
         this.vacationService.getVacationRequestsByUserId(this.selectedUserId).subscribe(
           (response: any) => {
-            console.log('Respuesta del servicio:', response);
-  
             if (response.success && Array.isArray(response.data)) {
               const userVacationRequests: VacationRequest[] = response.data;
               const totalDaysSum = userVacationRequests.reduce((sum, request) => sum + request.totalDays, 0);
@@ -98,11 +95,11 @@ export class ValidationRequestRegisterComponent {
                 alert(`Los días totales superan las vacaciones disponibles ${remainingDays}`);
               }
             } else {
-              console.error('La respuesta del servicio no es válida:', response);
+              console.error('The service response is not valid: ', response);
             }
           },
           error => {
-            console.error('Error al obtener las solicitudes de vacaciones:', error);
+            console.error('Error getting vacation requests: ', error);
           }
         );
       },
@@ -131,12 +128,12 @@ export class ValidationRequestRegisterComponent {
     
     this.vacationService.deleteVacationRequest(id).subscribe(
       () => {
-        alert("Solicitud de vacacion eliminado");
+        alert("Vacation request deleted");
         this.GetAll();
       },
       (error) => {
-        console.error('Error al eliminar la Solicitud de vacacion:', error);
-        alert("Error al eliminar la Solicitud de vacacion");
+        console.error('Error when deleting Vacation Request:', error);
+        alert("Error deleting Vacation Request");
       }
     );
   }

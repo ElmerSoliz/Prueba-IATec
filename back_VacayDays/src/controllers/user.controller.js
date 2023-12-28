@@ -5,7 +5,7 @@ export default {
     async GetAll(req, res){
         try {
             const users = await models.User.findAll({
-                attributes: ['id','username', 'email', 'holidays', 'createdAt']
+                attributes: ['id','username', 'email', 'holidays', 'createdAt', 'nickName']
             });
             return res.status(200).json(users);
         } catch (error) {

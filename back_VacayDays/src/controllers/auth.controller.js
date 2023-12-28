@@ -34,9 +34,6 @@ export default {
             return res.status(401).json({message: "Incorrect password"})
         }
     },
-    register(req, res){
-
-    },
     logout(req, res){
 
     }

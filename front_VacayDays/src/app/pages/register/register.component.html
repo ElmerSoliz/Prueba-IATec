@@ -7,6 +7,8 @@
           <th scope="col">Nombre</th>
           <th scope="col">Email</th>
           <th scope="col">Fecha de Ingreso</th>
+          <th scope="col">Dias de Vacaciones</th>
+          <th scope="col"> Nick Name</th>
           <th scope="col">Acciones</th>
         </tr>
       </thead>
@@ -15,6 +17,8 @@
           <td>{{ user.username }}</td>
           <td>{{ user.email }}</td>
           <td>{{ user.createdAt | date:'yyyy-MM-dd' }}</td>
+          <td>{{ user.holidays }}</td>
+          <td>{{ user.nickName }}</td>
           <td>
             <i class="icon far fa-edit" (click)="editUser()"></i>
             <i class="icon far fa-trash-alt" (click)="deleteUser(user.id)"></i>
@@ -41,7 +45,10 @@
         <input type="password" id="password" name="password" [(ngModel)]="userData.password" required>
         
         <label for="createdAt">Fechas de Inicio</label>
-        <input type="date" id="createdAt" name="createdAt" [(ngModel)]="userData.createdAt" required>
+        <input class="date-container" type="date" id="createdAt" name="createdAt" [(ngModel)]="userData.createdAt" required>
+
+        <label for="nickName">Nick Name</label>
+        <input type="text" id="nickName" name="nickName" [(ngModel)]="userData.nickName" required>
 
         <button type="submit" class="action-button btn btn-success">Registrar</button>
           

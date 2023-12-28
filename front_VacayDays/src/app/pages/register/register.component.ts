@@ -11,7 +11,7 @@ import { UserService } from 'src/app/services/user.service';
 export class RegisterComponent {
 
   users : User[] = []; 
-  userData: User = {id: 0,username: '', email: '', password: '', holidays: 0, createdAt: new Date()};
+  userData: User = {id: 0,username: '', email: '', password: '', holidays: 0, createdAt: new Date(), nickName: ""};
   registeruser = false;
   
   constructor(private userService : UserService) {
@@ -25,7 +25,8 @@ export class RegisterComponent {
     this.userService.getAllUsers().subscribe(
       (data:User[]) => {
         this.users = data;
-        console.log(this.users);
+        console.log(data);
+        
       },
       (error) => {
         console.error('Error fetching users: ', error)
@@ -34,7 +35,8 @@ export class RegisterComponent {
   }
 
   registerUser(){
-    this.userService.createUser(this.userData)
+    if(this.userData.nickName.length < 20){
+      this.userService.createUser(this.userData)
       .subscribe(
         data => {
           console.log('User created successfully:');
@@ -45,6 +47,20 @@ export class RegisterComponent {
           console.error('Error creating user:', error);
         }
       );
+    } else{
+      alert("Cantidad de caracteres supera los 20")
+    }
+    // this.userService.createUser(this.userData)
+    //   .subscribe(
+    //     data => {
+    //       console.log('User created successfully:');
+    //       this.registeruser = false;
+    //       this.GetAll();
+    //     },
+    //     error => {
+    //       console.error('Error creating user:', error);
+    //     }
+    //   );
   }
 
   editUser(){

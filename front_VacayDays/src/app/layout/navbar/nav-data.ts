@@ -10,9 +10,12 @@ export const navbarData = [
         icon: 'far fa-folder-plus',
         label: 'Solicitud de Vacaciones'
     },
-    // {
-    //     routeLink: 'statistics',
-    //     icon: 'fal fa-chart-bar',
-    //     label: 'Estadistica'
-    // }
+    {
+        routeLink: '',
+        icon: 'far fa-sign-out-alt',
+        label: 'Logout',
+        action: () => {
+          localStorage.removeItem('token');
+        }
+      }
 ];

@@ -7,47 +7,14 @@ import { Observable } from 'rxjs';
 })
 export class AuthService {
 
-  private apiUrl = 'http://127.0.0.1:3000/api/v1/auth/login';
+  private apiUrl = 'http://127.0.0.1:3000/api/v1/auth';
 
   constructor(private http: HttpClient) { }
 
+  login(email: string, password: string): Observable<any> {
+    const url = `${this.apiUrl}/login`;
+    const body = { email, password };
 
-  // login(crentials: any): Observable<any> {
-  //   return this.http.post<any>(this.apiUrl, crentials);
-  // }
-  login(credentials: any): Observable<any> {
-    const headers = this.addTokenToHeaders();
-    return this.http.post<any>(this.apiUrl, credentials, { headers });
-  }
-
-  setToken(token: string): void {
-    localStorage.setItem('access_token', token);
-  }
-
-  getToken(): string | null {
-    return localStorage.getItem('access_token');
-  }
-
-  getHeaders(): HttpHeaders {
-    const token = this.getToken();
-    return new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${token}`
-    });
-  }
-
-  // Nuevo método para agregar automáticamente el token a la cabecera
-  addTokenToHeaders(): HttpHeaders {
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-    });
-  
-    const token = this.getToken();
-  
-    if (token) {
-      return headers.set('Authorization', `Bearer ${token}`);
-    }
-  
-    return headers;
+    return this.http.post(url, body);
   }
 }

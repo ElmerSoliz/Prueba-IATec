@@ -20,7 +20,7 @@ const authMiddleware = (req, res, next) => {
                 }
             }
 
-            req.user = decoded;  // Agrega el objeto decodificado a la solicitud para su uso posterior
+            req.user = decoded;
             next();
         });
     } catch (error) {

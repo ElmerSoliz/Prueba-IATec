@@ -6,18 +6,18 @@ import authMiddleware from "../middleware/auth.middleware";
 
 const RouteAdmin = Router()
 
-RouteAdmin.get("/user" , userController.GetAll);
-RouteAdmin.post("/user" ,userController.Create);
-RouteAdmin.get("/user:id" ,userController.GetById);
-RouteAdmin.put("/user:id" ,userController.Update);
-RouteAdmin.delete("/user:id" ,userController.Delete);
+RouteAdmin.get("/user" ,  authMiddleware, userController.GetAll);
+RouteAdmin.post("/user" , authMiddleware, userController.Create);
+RouteAdmin.get("/user:id" , authMiddleware, userController.GetById);
+RouteAdmin.put("/user:id" , authMiddleware, userController.Update);
+RouteAdmin.delete("/user:id" , authMiddleware, userController.Delete);
 
-RouteAdmin.get("/vacationRequest",vacationRequestController.GetAll);
-RouteAdmin.post("/vacationRequest",vacationRequestController.Create);
-RouteAdmin.get("/vacationRequest:id",vacationRequestController.GetById);
-RouteAdmin.get("/vacationUser:userId",vacationRequestController.GetByUserId);
-RouteAdmin.put("/vacationRequest:id",vacationRequestController.Update);
-RouteAdmin.delete("/vacationRequest:id",vacationRequestController.Delete);
+RouteAdmin.get("/vacationRequest",authMiddleware,vacationRequestController.GetAll);
+RouteAdmin.post("/vacationRequest",authMiddleware,vacationRequestController.Create);
+RouteAdmin.get("/vacationRequest:id",authMiddleware,vacationRequestController.GetById);
+RouteAdmin.get("/vacationUser:userId",authMiddleware,vacationRequestController.GetByUserId);
+RouteAdmin.put("/vacationRequest:id",authMiddleware,vacationRequestController.Update);
+RouteAdmin.delete("/vacationRequest:id",authMiddleware,vacationRequestController.Delete);
 
 // RouteAdmin.get("/vacationRequest", authMiddleware,vacationRequestController.GetAll);
 // RouteAdmin.post("/vacationRequest", authMiddleware,vacationRequestController.Create);

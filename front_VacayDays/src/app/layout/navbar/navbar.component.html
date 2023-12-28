@@ -1,20 +1,23 @@
 <div class="navbar" [ngClass]="collapsed ? 'navbar-collapsed' : ''">
-    <div class="logo-container">
-      <button class="logo" (click)="toggleCollapsed()">I</button>
-      <div class="logo-text" *ngIf="collapsed">IATEC</div>
-      <button class="btn-close" *ngIf="collapsed" (click)="closeNavBar()">
-          <i class="fal fa-times close-icon"></i>
-      </button>
-    </div>
-    <ul class="navbar-nav">
-      <li class="navbar-nav-item" *ngFor="let data of navData">
-        <a href="" class="navbar-nav-link" [routerLink]="[data.routeLink]" 
-          routerLinkActive="active"
-          [routerLinkActiveOptions]="{exact: true}"
-        >
-          <i class="navbar-link-icon" [class]="data.icon"></i>
-          <span class="navbar-link-text" *ngIf="collapsed">{{ data.label }}</span>
-        </a>
-      </li>
-    </ul>
+  <div class="logo-container">
+    <button class="logo" (click)="toggleCollapsed()">P.I</button>
+    <div class="logo-text" *ngIf="collapsed">PRUEBA IATEC</div>
+    <button class="btn-close" *ngIf="collapsed" (click)="closeNavBar()">
+        <i class="fal fa-times close-icon"></i>
+    </button>
+  </div>
+  <ul class="navbar-nav">
+    <li class="navbar-nav-item" *ngFor="let data of navData">
+      <a *ngIf="!data.action" href="" class="navbar-nav-link" [routerLink]="[data.routeLink]" 
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{exact: true}">
+        <i class="navbar-link-icon" [class]="data.icon"></i>
+        <span class="navbar-link-text" *ngIf="collapsed">{{ data.label }}</span>
+      </a>
+      <a *ngIf="data.action" href="" class="navbar-nav-link" (click)="handleLogout(data.action)">
+        <i class="navbar-link-icon" [class]="data.icon"></i>
+        <span class="navbar-link-text" *ngIf="collapsed">{{ data.label }}</span>
+      </a>
+    </li>
+  </ul>
 </div>
